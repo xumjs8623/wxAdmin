@@ -1,7 +1,7 @@
 <template>
   <div class="admin-let">
     <!--<el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>-->
-    <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+    <el-menu default-active="1" class="el-menu-vertical-demo">
       <el-submenu  v-for="item in menus" :index="item.index">
         <template slot="title"><i :class="item.icon"></i>{{item.name}}</template>
         <el-menu-item v-for="sub in item.children" :index="sub.index">{{sub.name}}</el-menu-item>

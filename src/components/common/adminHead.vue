@@ -10,6 +10,8 @@ export default{
 </script>
 <style>
   .menus-head{
-    background-color: #000
+    background-color: #000;
+    margin-top: -1rem;
+    height: 50px;
   }
 </style>
