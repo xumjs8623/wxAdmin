@@ -15,6 +15,7 @@
     name: 'admin-left',
     data () {
       return {
+        // 左侧菜单栏数据
         menus: [
         {name: '导航一', icon: 'el-icon-information', index: '1', children: [{name: '导航1', url: '/admin/a', index: '1-1'}, {name: '导航2', url: '/admin/a', index: '1-2'}, {name: '导航3', url: '/admin/a', index: '1-3'}]},
         {name: '导航二', icon: 'el-icon-picture', index: '2'},
