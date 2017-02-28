@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-let">
+  <div class="admin-let" :style="{height:bodyHeight+'px'}">
     <!--<el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>-->
     <el-menu default-active="1" class="el-menu-vertical-demo">
       <el-submenu  v-for="item in menus" :index="item.index">
@@ -20,8 +20,12 @@
         {name: '导航一', icon: 'el-icon-information', index: '1', children: [{name: '导航1', url: '/admin/a', index: '1-1'}, {name: '导航2', url: '/admin/a', index: '1-2'}, {name: '导航3', url: '/admin/a', index: '1-3'}]},
         {name: '导航二', icon: 'el-icon-picture', index: '2'},
         {name: '导航三', icon: 'el-icon-message', index: '3'}
-        ]
+        ],
+        bodyHeight: document.body.scrollHeight
       }
+    },
+    created: function () {
+      console.log(document.body.scrollHeight)
     },
     methods: {
       handleNodeClick (data) {
@@ -33,3 +37,8 @@
   }
 
 </script>
+<style>
+  .admin-let{
+    background-color: #eef1f6
+  }
+</style>
