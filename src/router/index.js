@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from 'components/Hello'
 import Admin from 'components/admin/Admin'
-import Main from 'components/content/content1'
+import tableTest from 'components/test/tableTest'
 Vue.use(Router)
 
 export default new Router({
@@ -18,8 +18,11 @@ export default new Router({
     title: '主页',
     // iconCls: 'el-icon-message'
     children: [{
-      path: 'main',
-      component: Main
+      path: '',
+      component: tableTest
+    }, {
+      path: 'list',
+      component: tableTest
     }]
   }]
 })

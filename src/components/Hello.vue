@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <img src="../assets/logo.png">
+    <img src="../assets/logo.png" @click="goUrl()">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -27,6 +27,11 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    goUrl () {
+      this.$router.push({ path: 'admin' })
     }
   }
 }
