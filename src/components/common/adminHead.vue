@@ -4,7 +4,15 @@
 	</div>
 </template>
 <script>
+import * as api from '../../api/api.js'
 export default{
+  created: () => {
+    console.log('头部加载')
+    api.getUser({name: 1})
+      .then(data => {
+        console.log(data)
+      })
+  }
 }
 </script>
 <style>
