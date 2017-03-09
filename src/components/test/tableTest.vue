@@ -7,7 +7,8 @@
       <el-col :span=24>
       <div class="table-search">
         <el-input v-model="keyWord" placeholder="关键词"></el-input>
-        <el-button type="primary">查询</el-button>
+        <span>{{num}}</span>
+        <el-button type="primary" @click="addNum">查询</el-button>
       </div>
       </el-col>
     </el-row>
@@ -65,6 +66,7 @@
 
 <script>
 import breadcrumb from '../breadcrumb/breadcrumb'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   components: {
     breadcrumb
@@ -97,6 +99,16 @@ export default {
         address: '上海市普陀区金沙江路 1516 弄'
       }]
     }
+  },
+  computed: {
+    ...mapGetters({
+      num: 'getNum'
+    })
+  },
+  methods: {
+    ...mapActions([
+      'addNum'
+    ])
   }
 }
 </script>
