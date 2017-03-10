@@ -4,7 +4,7 @@
       <el-col :span="24"><breadcrumb :names="breadData"></breadcrumb></el-col>
     </el-row>
     <el-row :gutter="20">
-      <el-col :span=24>
+      <el-col :span="20">
       <div class="table-search">
         <el-input v-model="keyWord" placeholder="关键词"></el-input>
         <span>{{num}}</span>

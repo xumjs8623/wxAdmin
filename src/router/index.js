@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from 'components/Hello'
+import Login from 'components/login/login'
 import Admin from 'components/admin/Admin'
 import tableTest from 'components/test/tableTest'
+import formGroup from 'components/formGroup/form'
+// import alertGroup from 'components/formGroup/form'
 Vue.use(Router)
 
 export default new Router({
@@ -10,7 +12,7 @@ export default new Router({
   routes: [{
     path: '/',
     name: '首页',
-    component: Hello
+    component: Login
   }, {
     path: '/admin',
     name: '主页',
@@ -23,6 +25,12 @@ export default new Router({
     }, {
       path: 'list',
       component: tableTest
+    }, {
+      path: 'form',
+      component: formGroup
+    }, {
+      path: 'list',
+      component: formGroup
     }]
   }]
 })
