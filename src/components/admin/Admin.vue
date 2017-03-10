@@ -1,18 +1,14 @@
 <template>
   <div class="admin">
-  	<el-row>
-  		<el-col :span="24">
-        <admin-head></admin-head>  
-      </el-col>
-  	</el-row>
-  	<el-row>
-  		<el-col :span="4">
-  			<menusLeft></menusLeft>
-  		</el-col>
-  		<el-col :span="20">
-        <router-view></router-view>  
-      </el-col>
-  	</el-row>
+    <div id="admin-head">
+      <admin-head></admin-head>
+    </div>
+    <div id="admin-left">
+      <menusLeft></menusLeft>
+    </div>
+    <div id="admin-content">
+      <router-view></router-view>  
+    </div> 
   </div>
 </template>
 <script>
@@ -31,3 +27,27 @@ export default {
   }
 }
 </script>
+<style>
+  #admin-content{
+    position: absolute;
+    top: 50px;
+    left: 200px;
+    right: 0px;
+    bottom: 0px;
+    padding:15px;
+  }
+  #admin-left{
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    width: 200px;
+    bottom: 0px;
+    background-color: #eef1f6;
+  }
+  #admin-head{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+  }
+</style>

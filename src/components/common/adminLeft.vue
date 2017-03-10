@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-let" :style="{height:bodyHeight+'px'}">
+  <div class="admin-let">
     <!--<el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>-->
     <el-menu default-active="1" class="el-menu-vertical-demo">
       <el-submenu  v-for="item in menus" :index="item.index">
@@ -17,8 +17,7 @@
     data () {
       return {
         // 左侧菜单栏数据
-        menus: [],
-        bodyHeight: document.body.scrollHeight
+        menus: []
       }
     },
     created: function () {
@@ -41,6 +40,7 @@
 </script>
 <style>
   .admin-let{
+    width: 100%;
     background-color: #eef1f6
   }
   .admin-let a{

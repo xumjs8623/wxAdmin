@@ -1,67 +1,70 @@
 <template>
   <div class="tableTest">
     <el-row :gutter="20">
-      <el-col :span="24"><breadcrumb :names="breadData"></breadcrumb></el-col>
-    </el-row>
-    <el-row :gutter="20">
-      <el-col :span="20">
-      <div class="table-search">
-        <el-input v-model="keyWord" placeholder="关键词"></el-input>
-        <span>{{num}}</span>
-        <el-button type="primary" @click="addNum">查询</el-button>
-      </div>
+      <el-col :span="24">
+        <breadcrumb :names="breadData"></breadcrumb>
       </el-col>
     </el-row>
-    
-    <div class="table-test">
-     <el-table
-      :data="tableData"
-      border
-      style="width: 100%">
-      <el-table-column type="expand">
-        <template scope="props">
-          <el-form label-position="left" inline class="demo-table-expand">
-            <el-form-item label="日期">
-              <span>{{ props.row.date }}</span>
-            </el-form-item>
-            <el-form-item label="姓名">
-              <span>{{ props.row.name }}</span>
-            </el-form-item>
-            <el-form-item label="地址">
-              <span>{{ props.row.address }}</span>
-            </el-form-item>
-          </el-form>
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        label="地址">
-      </el-table-column>
-    </el-table>
-    </div>
-   
+    <el-row :gutter="20">
+      <el-col :span="24">
+        <div class="table-search">
+          <el-input v-model="keyWord" placeholder="关键词"></el-input>
+          <span>{{num}}</span>
+          <el-button type="primary" @click="addNum">查询</el-button>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row :gutter = "20">
+      <el-col :span="24">
+        <div class="table-test">
+         <el-table
+          :data="tableData"
+          border
+          style="width: 100%">
+          <el-table-column type="expand">
+            <template scope="props">
+              <el-form label-position="left" inline class="demo-table-expand">
+                <el-form-item label="日期">
+                  <span>{{ props.row.date }}</span>
+                </el-form-item>
+                <el-form-item label="姓名">
+                  <span>{{ props.row.name }}</span>
+                </el-form-item>
+                <el-form-item label="地址">
+                  <span>{{ props.row.address }}</span>
+                </el-form-item>
+              </el-form>
+            </template>
+          </el-table-column>
+            <el-table-column
+              prop="date"
+              label="日期"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="date"
+              label="日期"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="date"
+              label="日期"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="姓名"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="address"
+              label="地址">
+            </el-table-column>
+          </el-table>
+        </div>
+      </el-col>
+    </el-row>
   </div>
-  
 </template>
 
 <script>
@@ -113,9 +116,9 @@ export default {
 }
 </script>
 <style>
-.table-test {
+/*.table-test {
   padding: 15px
-}
+}*/
 .demo-table-expand {
   font-size: 0;
 }

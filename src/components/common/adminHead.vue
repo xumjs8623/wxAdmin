@@ -17,6 +17,7 @@ export default{
 </script>
 <style>
   .menus-head{
+    width: 100%;
     background-color: #19a97b;
     height: 50px;
   }

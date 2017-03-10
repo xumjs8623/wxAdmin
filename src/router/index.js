@@ -29,7 +29,7 @@ export default new Router({
       path: 'form',
       component: formGroup
     }, {
-      path: 'list',
+      path: 'alert',
       component: formGroup
     }]
   }]
