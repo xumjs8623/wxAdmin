@@ -5,6 +5,11 @@
         <breadcrumb :names = "breadData"></breadcrumb>
       </el-col>
     </el-row>
+    <el-row :gutter = "20">
+      <el-col :span="24">
+        
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>

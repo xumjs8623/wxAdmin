@@ -61,15 +61,14 @@ export default {
 
     }
     .ms-login{
-        position: absolute;
-        left:50%;
-        top:50%;
-        width:300px;
-        height:160px;
-        margin:-150px 0 0 -190px;
-        padding:40px;
+        position: relative;
+        width: 300px;
+        height: 160px;
+        padding: 40px;
         border-radius: 5px;
+        margin: 0 auto;
         background: #fff;
+        margin-top: 20%;
     }
     .login-btn{
         text-align: center;
@@ -77,5 +76,11 @@ export default {
     .login-btn button{
         width:100%;
         height:36px;
+    }
+    .login-wrap .el-input{
+        width: 100%;
+    }
+    body{
+        background: #1F2D3D;
     }
 </style>

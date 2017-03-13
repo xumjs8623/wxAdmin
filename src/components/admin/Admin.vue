@@ -35,6 +35,7 @@ export default {
     right: 0px;
     bottom: 0px;
     padding:15px;
+    background-color: #fff
   }
   #admin-left{
     position: absolute;
