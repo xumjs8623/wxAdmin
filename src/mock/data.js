@@ -14,9 +14,13 @@ export const menus = {
       url: '/admin/form',
       index: '1-2'
     }, {
+      name: '上传',
+      url: '/admin/upload',
+      index: '1-3'
+    }, {
       name: '弹窗组件',
       url: '/admin/alert',
-      index: '1-3'
+      index: '1-4'
     }]
   },
   { name: '导航二', icon: 'el-icon-picture', index: '2' },

@@ -35,7 +35,8 @@ export default {
     right: 0px;
     bottom: 0px;
     padding:15px;
-    background-color: #fff
+    background-color: #fff;
+    overflow: auto;
   }
   #admin-left{
     position: absolute;
@@ -44,6 +45,7 @@ export default {
     width: 200px;
     bottom: 0px;
     background-color: #eef1f6;
+    overflow: auto;
   }
   #admin-head{
     position: absolute;

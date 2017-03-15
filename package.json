@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "element-ui": "^1.1.6",
+    "element-ui": "^1.2.3",
     "vue": "^2.1.10",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1"

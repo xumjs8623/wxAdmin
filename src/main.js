@@ -9,7 +9,6 @@ import App from './App'
 import router from './router'
 import store from './store/index.js'
 import mock from './mock'
-
 Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
