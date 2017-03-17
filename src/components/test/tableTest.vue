@@ -21,47 +21,46 @@
           :data="tableData"
           border
           style="width: 100%">
-          <el-table-column type="expand">
-            <template scope="props">
-              <el-form label-position="left" inline class="demo-table-expand">
-                <el-form-item label="日期">
-                  <span>{{ props.row.date }}</span>
-                </el-form-item>
-                <el-form-item label="姓名">
-                  <span>{{ props.row.name }}</span>
-                </el-form-item>
-                <el-form-item label="地址">
-                  <span>{{ props.row.address }}</span>
-                </el-form-item>
-              </el-form>
-            </template>
-          </el-table-column>
-            <el-table-column
-              prop="date"
-              label="日期"
-              width="180">
+            <el-table-column type="expand">
+              <template scope="props">
+                <el-form label-position="left" inline class="demo-table-expand">
+                  <el-form-item label="标题">
+                    <span>{{ props.row.title }}</span>
+                  </el-form-item>
+                  <el-form-item label="姓名">
+                    <span>{{ props.row.author.loginname }}</span>
+                  </el-form-item>
+                  <el-form-item label="创建时间">
+                    <span>{{ props.row.create_at }}</span>
+                  </el-form-item>
+                </el-form>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="date"
-              label="日期"
-              width="180">
+              type="index"
+              label="序号"
+              width="70">
             </el-table-column>
             <el-table-column
-              prop="date"
-              label="日期"
-              width="180">
+              prop="title"
+              label="标题"
+              width="500">
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="author.loginname"
               label="姓名"
-              width="180">
+              min-width="150">
             </el-table-column>
             <el-table-column
-              prop="address"
-              label="地址">
+              prop="create_at"
+              label="创建时间"
+              width="180">
             </el-table-column>
           </el-table>
         </div>
+      </el-col>
+      <el-col :span="24">
+        <pagination :sizeChange="handleSizeChange" :currentChange="handleCurrentChange" :currentPage="currentPage"></pagination>
       </el-col>
     </el-row>
   </div>
@@ -69,39 +68,41 @@
 
 <script>
 import breadcrumb from '../breadcrumb/breadcrumb'
+import pagination from '../common/pagination'
 import { mapGetters, mapActions } from 'vuex'
+import { getTopics } from '../../api/api'
+// import dateFormat from 'dateformat'
 export default {
   components: {
-    breadcrumb
+    breadcrumb,
+    pagination
   },
   data () {
     return {
       keyWord: '',
-      breadData: [{
-        name: '首页',
-        url: '/admin'
-      }, {
-        name: '主题管理',
-        url: '/admin/list'
-      }],
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      breadData: [],
+      tableData: [],
+      currentPage: 3
     }
+  },
+  // 创建组件回调
+  created () {
+    let _this = this
+    let params = {
+      page: 1,
+      tab: '',
+      limit: 10
+    }
+    // 获取新闻
+    getTopics(params)
+      .then(data => {
+        // let timestr = ''
+        // for (let i = 0; i < data.data.length; i++) {
+        //   timestr = new Date(data.data[i].create_at)
+        //   data.data[i].create_at = dateFormat(timestr, 'YYYY-MM-DD HH:mm:ss')
+        // }
+        _this.tableData = data.data
+      })
   },
   computed: {
     ...mapGetters({
@@ -109,9 +110,37 @@ export default {
     })
   },
   methods: {
+    // vuex操作函数
     ...mapActions([
       'addNum'
-    ])
+    ]),
+    // 每页显示条数修改回调
+    handleSizeChange: function (size) {
+      console.log(size)
+    },
+    // 当前页码修改回调
+    handleCurrentChange: function (currentPage) {
+      console.log(currentPage)
+    },
+    // 获取新闻
+    getNews: function (currPage) {
+      let _this = this
+      let params = {
+        page: 1,
+        tab: '',
+        limit: 10
+      }
+      // 获取新闻
+      getTopics(params)
+        .then(data => {
+          // let timestr = ''
+          // for (let i = 0; i < data.data.length; i++) {
+          //   timestr = new Date(data.data[i].create_at)
+          //   data.data[i].create_at = dateFormat(timestr, 'YYYY-MM-DD HH:mm:ss')
+          // }
+          _this.tableData = data.data
+        })
+    }
   }
 }
 </script>
@@ -141,6 +170,7 @@ export default {
 .table-search{
   display: inline-block;
   text-align: center;
-  width: 100%
+  width: 100%;
+  margin-bottom: 20px;
 }
 </style>

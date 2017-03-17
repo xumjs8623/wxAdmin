@@ -5,6 +5,7 @@ import Admin from 'components/admin/Admin'
 import tableTest from 'components/test/tableTest'
 import formGroup from 'components/formGroup/form'
 import upload from 'components/upload/upload'
+import alert from 'components/confirm/confirm'
 // import alertGroup from 'components/formGroup/form'
 Vue.use(Router)
 
@@ -31,7 +32,7 @@ export default new Router({
       component: formGroup
     }, {
       path: 'alert',
-      component: formGroup
+      component: alert
     }, {
       path: 'upload',
       component: upload
