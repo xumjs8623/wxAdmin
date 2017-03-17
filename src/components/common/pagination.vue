@@ -1,31 +1,58 @@
+<!-- 分页封装模板，传入三个参数：
+sizeChange 每页显示条数修改时的回调  function 
+currentChange 当前页码修改时的回调   function
+currentPage 当前页  num 
+total 总条数  num-->
 <template>
-  <div class="block">
+  <div class="block tpl-pagination">
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes='[10, 20, 30, 50]'
-      :page-size="10"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :page-sizes="pageSizes"
+      :page-size="pageSize"
+      :layout="layout"
+      :total="total">
     </el-pagination>
   </div>
 </template>
 <script>
+// 引入分页可配常量参数
+import { pagination } from '../consts.js'
 export default {
   data () {
     return {
-      // currentPage: 1
+      // 每页显示条数
+      pageSizes: pagination.pageSizes,
+      // 当前选中每页显示条数
+      pageSize: pagination.pageSize,
+      // 显示的组件
+      layout: pagination.layout
     }
   },
-  props: ['sizeChange', 'currentChange', 'currentPage'],
+  // 父组件传入的参数
+  props: ['sizeChange', 'currentChange', 'currentPage', 'total'],
   methods: {
+    // 每页显示的条数回调函数 size为条数
     handleSizeChange: function (size) {
       this.sizeChange(size)
     },
+    // 当前页码修改时的回调函数，currentPage为当前页
     handleCurrentChange: function (currentPage) {
       this.currentChange(currentPage)
     }
   }
 }
 </script>
+<style>
+  .tpl-pagination{
+    text-align: center;
+    margin-top: 15px;
+  }
+  .tpl-pagination .el-pagination__total,.tpl-pagination .el-pagination__sizes{
+    float: left;
+  }
+  .tpl-pagination .btn-prev,.tpl-pagination .el-pager,.tpl-pagination .btn-next,.tpl-pagination .el-pagination__jump{
+    float: right;
+  }
+</style>

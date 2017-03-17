@@ -17,50 +17,19 @@
     <el-row :gutter = "20">
       <el-col :span="24">
         <div class="table-test">
-         <el-table
-          :data="tableData"
-          border
-          style="width: 100%">
-            <el-table-column type="expand">
-              <template scope="props">
-                <el-form label-position="left" inline class="demo-table-expand">
-                  <el-form-item label="标题">
-                    <span>{{ props.row.title }}</span>
-                  </el-form-item>
-                  <el-form-item label="姓名">
-                    <span>{{ props.row.author.loginname }}</span>
-                  </el-form-item>
-                  <el-form-item label="创建时间">
-                    <span>{{ props.row.create_at }}</span>
-                  </el-form-item>
-                </el-form>
-              </template>
-            </el-table-column>
-            <el-table-column
-              type="index"
-              label="序号"
-              width="70">
-            </el-table-column>
-            <el-table-column
-              prop="title"
-              label="标题"
-              width="500">
-            </el-table-column>
-            <el-table-column
-              prop="author.loginname"
-              label="姓名"
-              min-width="150">
-            </el-table-column>
-            <el-table-column
-              prop="create_at"
-              label="创建时间"
-              width="180">
-            </el-table-column>
-          </el-table>
+        <!-- table组件 -->
+          <tableTpl :tableData="tableData" :tableStruct="tableStruct"></tableTpl>
         </div>
       </el-col>
       <el-col :span="24">
-        <pagination :sizeChange="handleSizeChange" :currentChange="handleCurrentChange" :currentPage="currentPage"></pagination>
+      <!-- 分页组件 -->
+        <pagination 
+          :sizeChange="handleSizeChange"
+          :currentChange="handleCurrentChange"
+          :currentPage="currentPage"
+          :total="300">
+        </pagination>
+        <el-button type="primary" @click="setIndex">跳转第一页</el-button>
       </el-col>
     </el-row>
   </div>
@@ -69,40 +38,61 @@
 <script>
 import breadcrumb from '../breadcrumb/breadcrumb'
 import pagination from '../common/pagination'
+import tableTpl from '../common/tableTpl'
 import { mapGetters, mapActions } from 'vuex'
 import { getTopics } from '../../api/api'
 // import dateFormat from 'dateformat'
 export default {
   components: {
     breadcrumb,
-    pagination
+    pagination,
+    tableTpl
   },
   data () {
     return {
       keyWord: '',
       breadData: [],
       tableData: [],
-      currentPage: 3
+      currentPage: 3,
+      tableStruct: {
+        // 包含form内的字段显示
+        tableExpand: [{
+          name: '标题',
+          field: 'title'
+        }, {
+          name: '姓名',
+          field: 'loginname'
+        }, {
+          name: '创建时间',
+          field: 'create_at'
+        }, {
+          name: '标题',
+          field: 'title'
+        }],
+        // table结构
+        tableItem: [{
+          name: '序号',
+          field: 'index',
+          width: '70'
+        }, {
+          name: '标题',
+          field: 'title',
+          width: ''
+        }, {
+          name: '姓名',
+          field: 'loginname',
+          width: ''
+        }, {
+          name: '创建时间',
+          field: 'create_at',
+          width: ''
+        }]
+      }
     }
   },
   // 创建组件回调
   created () {
-    let _this = this
-    let params = {
-      page: 1,
-      tab: '',
-      limit: 10
-    }
-    // 获取新闻
-    getTopics(params)
-      .then(data => {
-        // let timestr = ''
-        // for (let i = 0; i < data.data.length; i++) {
-        //   timestr = new Date(data.data[i].create_at)
-        //   data.data[i].create_at = dateFormat(timestr, 'YYYY-MM-DD HH:mm:ss')
-        // }
-        _this.tableData = data.data
-      })
+    this.getNews()
   },
   computed: {
     ...mapGetters({
@@ -122,8 +112,13 @@ export default {
     handleCurrentChange: function (currentPage) {
       console.log(currentPage)
     },
+    setIndex: function () {
+      // 测试所用  设为首页
+      this.currentPage = 1
+      console.log('跳转到第一页')
+    },
     // 获取新闻
-    getNews: function (currPage) {
+    getNews: function () {
       let _this = this
       let params = {
         page: 1,
@@ -133,11 +128,11 @@ export default {
       // 获取新闻
       getTopics(params)
         .then(data => {
-          // let timestr = ''
-          // for (let i = 0; i < data.data.length; i++) {
-          //   timestr = new Date(data.data[i].create_at)
-          //   data.data[i].create_at = dateFormat(timestr, 'YYYY-MM-DD HH:mm:ss')
-          // }
+          for (let i = 0; i < data.data.length; i++) {
+            data.data[i]['index'] = i + 1
+            data.data[i]['loginname'] = data.data[i].author.loginname
+          }
+          console.log(data.data)
           _this.tableData = data.data
         })
     }
