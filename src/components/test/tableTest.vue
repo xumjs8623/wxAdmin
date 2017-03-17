@@ -5,6 +5,9 @@
         <breadcrumb :names="breadData"></breadcrumb>
       </el-col>
     </el-row>
+    <el-dialog title="收货地址" v-model="dialogTableVisible">
+      <p>1213123</p>
+    </el-dialog>
     <el-row :gutter="20">
       <el-col :span="24">
         <div class="table-search">
@@ -54,6 +57,7 @@ export default {
       breadData: [],
       tableData: [],
       currentPage: 3,
+      dialogTableVisible: false,
       tableStruct: {
         // 包含form内字段显示
         tableExpand: [{
@@ -86,6 +90,20 @@ export default {
           name: '创建时间',
           field: 'create_at',
           width: ''
+        }],
+        // table操作
+        tableHandle: [{
+          name: '编辑',
+          field: 'edit',
+          tip: 'title',
+          buttonType: 'info',
+          handle: this.editHandle
+        }, {
+          name: '删除',
+          field: 'delt',
+          tip: 'title',
+          buttonType: 'danger',
+          handle: this.deltHandle
         }]
       }
     }
@@ -135,6 +153,16 @@ export default {
           console.log(data.data)
           _this.tableData = data.data
         })
+    },
+    deltHandle: function (index) {
+      this.tableData.splice(index, 1)
+      this.$message({
+        message: '删除成功',
+        type: 'success'
+      })
+    },
+    editHandle: function () {
+      this.dialogTableVisible = true
     }
   }
 }
