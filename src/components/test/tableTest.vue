@@ -55,7 +55,7 @@ export default {
       tableData: [],
       currentPage: 3,
       tableStruct: {
-        // 包含form内的字段显示
+        // 包含form内字段显示
         tableExpand: [{
           name: '标题',
           field: 'title'
