@@ -42,6 +42,7 @@
 import breadcrumb from '../breadcrumb/breadcrumb'
 import pagination from '../common/pagination'
 import tableTpl from '../common/tableTpl'
+import * as consts from '../consts'
 import { mapGetters, mapActions } from 'vuex'
 import { getTopics } from '../../api/api'
 // import dateFormat from 'dateformat'
@@ -81,7 +82,7 @@ export default {
         }, {
           name: '标题',
           field: 'title',
-          width: ''
+          width: '400'
         }, {
           name: '姓名',
           field: 'loginname',
@@ -123,12 +124,12 @@ export default {
       'addNum'
     ]),
     // 每页显示条数修改回调
-    handleSizeChange: function (size) {
-      console.log(size)
+    handleSizeChange: function (currentPage, size) {
+      this.getNews(currentPage, size)
     },
     // 当前页码修改回调
-    handleCurrentChange: function (currentPage) {
-      console.log(currentPage)
+    handleCurrentChange: function (currentPage, size) {
+      this.getNews(currentPage, size)
     },
     setIndex: function () {
       // 测试所用  设为首页
@@ -136,12 +137,12 @@ export default {
       console.log('跳转到第一页')
     },
     // 获取新闻
-    getNews: function () {
+    getNews: function (page = 1, size = consts.pagination.pageSize) {
       let _this = this
       let params = {
-        page: 1,
+        page: page,
         tab: '',
-        limit: 10
+        limit: size
       }
       // 获取新闻
       getTopics(params)
@@ -150,7 +151,6 @@ export default {
             data.data[i]['index'] = i + 1
             data.data[i]['loginname'] = data.data[i].author.loginname
           }
-          console.log(data.data)
           _this.tableData = data.data
         })
     },

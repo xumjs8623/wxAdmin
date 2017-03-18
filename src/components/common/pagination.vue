@@ -8,7 +8,7 @@ total 总条数  num-->
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage"
+      :current-page="currentPages"
       :page-sizes="pageSizes"
       :page-size="pageSize"
       :layout="layout"
@@ -27,7 +27,9 @@ export default {
       // 当前选中每页显示条数
       pageSize: pagination.pageSize,
       // 显示的组件
-      layout: pagination.layout
+      layout: pagination.layout,
+      // 当前页码
+      currentPages: this.currentPage
     }
   },
   // 父组件传入的参数
@@ -35,11 +37,17 @@ export default {
   methods: {
     // 每页显示的条数回调函数 size为条数
     handleSizeChange: function (size) {
-      this.sizeChange(size)
+      // 将当前条数赋值给data类
+      this.pageSize = size
+      // 调用显示条数回调函数，将当前页码和显示的条数作为实参传入
+      this.sizeChange(this.currentPages, this.pageSize)
     },
     // 当前页码修改时的回调函数，currentPage为当前页
     handleCurrentChange: function (currentPage) {
-      this.currentChange(currentPage)
+      // 将当前页赋值给data类
+      this.currentPages = currentPage
+      // 调用修改当前页后的回调函数，将当前页和显示的条数作为实参传入
+      this.currentChange(this.currentPages, this.pageSize)
     }
   }
 }
