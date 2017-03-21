@@ -5,6 +5,7 @@ currentPage 当前页  num
 total 总条数  num-->
 <template>
   <div class="block tpl-pagination">
+  {{setIndex}}
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -28,12 +29,20 @@ export default {
       pageSize: pagination.pageSize,
       // 显示的组件
       layout: pagination.layout,
-      // 当前页码
+      // 前一次传入的当前页
+      preCurrent: this.currentPage,
+      // // 当前页码
       currentPages: this.currentPage
     }
   },
+  watch: {
+    setIndex: function (val, oldVal) {
+      console.log(111)
+      this.currentPages = 1
+    }
+  },
   // 父组件传入的参数
-  props: ['sizeChange', 'currentChange', 'currentPage', 'total'],
+  props: ['sizeChange', 'currentChange', 'currentPage', 'total', 'setIndex'],
   methods: {
     // 每页显示的条数回调函数 size为条数
     handleSizeChange: function (size) {

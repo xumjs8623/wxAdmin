@@ -30,6 +30,7 @@
           :sizeChange="handleSizeChange"
           :currentChange="handleCurrentChange"
           :currentPage="currentPage"
+          :setIndex = "indexUnord"
           :total="300">
         </pagination>
         <el-button type="primary" @click="setIndex">跳转第一页</el-button>
@@ -59,6 +60,7 @@ export default {
       tableData: [],
       currentPage: 3,
       dialogTableVisible: false,
+      indexUnord: '',
       tableStruct: {
         // 包含form内字段显示
         tableExpand: [{
@@ -133,8 +135,9 @@ export default {
     },
     setIndex: function () {
       // 测试所用  设为首页
-      this.currentPage = 1
-      console.log('跳转到第一页')
+      // 先传0 再传1 能触发子组件中的 watch函数
+      let d = new Date()
+      this.indexUnord = d.getTime()
     },
     // 获取新闻
     getNews: function (page = 1, size = consts.pagination.pageSize) {
