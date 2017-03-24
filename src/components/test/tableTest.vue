@@ -135,7 +135,7 @@ export default {
     },
     setIndex: function () {
       // 测试所用  设为首页
-      // 先传0 再传1 能触发子组件中的 watch函数
+      // 利用传入时间戳来触发子组件中的 watch函数
       let d = new Date()
       this.indexUnord = d.getTime()
     },

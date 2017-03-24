@@ -1,6 +1,12 @@
 <template>
 	<div class="menus-head">
-		<span>绍兴金蝶云ERP</span>
+		<span class="menus-logo">绍兴金蝶云ERP</span>
+    <el-dropdown class="menus-username">
+      <span el-dropdown-link>Administrator</span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>退出登录</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
 	</div>
 </template>
 <script>
@@ -21,9 +27,16 @@ export default{
     background-color: #19a97b;
     height: 50px;
   }
-  .menus-head span{
+  .menus-logo,.menus-username{
   	color: #fff;
   	line-height: 50px;
-  	margin-left: 15px
+  }
+  .menus-logo{
+    margin-left: 15px
+  }
+  .menus-username{
+    float:right;
+    margin-right:35px;
+    cursor:pointer
   }
 </style>

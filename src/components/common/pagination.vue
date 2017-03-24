@@ -29,15 +29,12 @@ export default {
       pageSize: pagination.pageSize,
       // 显示的组件
       layout: pagination.layout,
-      // 前一次传入的当前页
-      preCurrent: this.currentPage,
       // // 当前页码
       currentPages: this.currentPage
     }
   },
   watch: {
     setIndex: function (val, oldVal) {
-      console.log(111)
       this.currentPages = 1
     }
   },
