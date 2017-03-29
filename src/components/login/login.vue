@@ -18,6 +18,9 @@
 </template>
 
 <script>
+import { login } from '../../api/api.js'
+import { Loading } from 'element-ui'
+import { mapActions } from 'vuex'
 export default {
   data: function () {
     return {
@@ -29,17 +32,30 @@ export default {
   },
   methods: {
     submitForm (formName) {
-      const self = this
-      self.$refs[formName].validate((valid) => {
+      let loadingInstance = Loading.service({ fullscreen: true })
+      const _this = this
+      _this.$refs[formName].validate((valid) => {
         if (valid) {
-          localStorage.setItem('ms_username', self.ruleForm.username)
-          self.$router.push('/admin/list')
+          localStorage.setItem('ms_username', _this.ruleForm.username)
+          login(this.ruleForm)
+            .then((data) => {
+              console.log(data)
+              loadingInstance.close()
+              if (data.code === 1) {
+                _this.$router.push('/admin/list')
+              } else {
+                _this.$message.error(data.msg)
+              }
+            })
         } else {
-          console.log('error submit!!')
+          console.log('error submit!')
           return false
         }
       })
-    }
+    },
+    ...mapActions([
+      'setLogin'
+    ])
   }
 }
 </script>

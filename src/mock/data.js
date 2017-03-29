@@ -14,8 +14,8 @@ export const menus = {
       url: '/admin/form',
       index: '1-2'
     }, {
-      name: '上传',
-      url: '/admin/upload',
+      name: '富文本',
+      url: '/admin/editor',
       index: '1-3'
     }, {
       name: '弹窗组件',

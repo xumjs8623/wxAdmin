@@ -6,6 +6,7 @@ import tableTest from 'components/test/tableTest'
 import formGroup from 'components/formGroup/form'
 import upload from 'components/upload/upload'
 import alert from 'components/confirm/confirm'
+import editor from 'components/editor/editor'
 // import alertGroup from 'components/formGroup/form'
 Vue.use(Router)
 
@@ -36,6 +37,9 @@ export default new Router({
     }, {
       path: 'upload',
       component: upload
+    }, {
+      path: 'editor',
+      component: editor
     }]
   }]
 })

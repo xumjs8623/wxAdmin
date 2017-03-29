@@ -9,6 +9,7 @@ import App from './App'
 import router from './router'
 import store from './store/index.js'
 import mock from './mock'
+// import { state } from '../store/modules/user'
 Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
