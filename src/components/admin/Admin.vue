@@ -7,7 +7,7 @@
       <menusLeft></menusLeft>
     </div>
     <div id="admin-content">
-      <router-view></router-view>
+        <router-view></router-view>
     </div> 
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
   name: 'admin',
   data () {
     return {
-      msg: '111'
+      transitionName: 'slide-left'
     }
   },
   components: {
