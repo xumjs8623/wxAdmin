@@ -7,7 +7,7 @@
       <menusLeft></menusLeft>
     </div>
     <div id="admin-content">
-      <router-view></router-view>  
+      <router-view></router-view>
     </div> 
   </div>
 </template>
@@ -25,6 +25,7 @@ export default {
     menusLeft,
     adminHead
   }
+
 }
 </script>
 <style>

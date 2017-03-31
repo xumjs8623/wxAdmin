@@ -12,6 +12,7 @@ import mock from './mock'
 // import { state } from '../store/modules/user'
 Vue.use(ElementUI)
 /* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   router,
@@ -19,4 +20,21 @@ new Vue({
   mock,
   template: '<App/>',
   components: { App }
+})
+// 登录控制
+router.beforeEach((to, from, next) => {
+  // ...
+  console.log(to.path)
+  switch (to.path) {
+    case '/':
+      next()
+      break
+    default:
+      if (store.getters.getUser) {
+        next()
+      } else {
+        next('/')
+      }
+      break
+  }
 })

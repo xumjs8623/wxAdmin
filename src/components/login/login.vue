@@ -42,6 +42,7 @@ export default {
               console.log(data)
               loadingInstance.close()
               if (data.code === 1) {
+                _this.setLogin()
                 _this.$router.push('/admin/list')
               } else {
                 _this.$message.error(data.msg)

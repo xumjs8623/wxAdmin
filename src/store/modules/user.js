@@ -6,20 +6,24 @@ const state = {
 
 // 异步操作
 const actions = {
-  setLogin: context => context.commit('SET_LOGIN')
+  setLogin: context => context.commit('SET_LOGIN'),
+  logout: context => context.commit('LOGOUT')
 }
 
 // 获取操作
 const getters = {
-  getUser: state => state.num
+  getUser: state => state.login
 }
-// 改变state
+  // 改变state
 const mutations = {
   [types.SET_LOGIN] (state, res) {
-  	state.login = true
+    state.login = true
+  },
+  [types.LOGOUT] (state, res) {
+    state.login = false
   }
 }
-// 往外暴露
+  // 往外暴露
 export default {
   state,
   getters,
